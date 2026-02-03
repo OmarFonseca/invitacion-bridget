@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test boleto PNG</title>
+    <style>
+      body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:#07161d; color:#eaf7ff; }
+      .wrap { max-width: 1100px; margin: 0 auto; padding: 18px 14px 40px; }
+      h1 { margin: 0 0 10px; font-size: 20px; }
+      .row { display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin: 10px 0 14px; }
+      button { padding:10px 12px; border-radius:12px; border:1px solid rgba(255,255,255,.18); background: rgba(125,227,246,.18); color:#eaf7ff; font-weight:800; cursor:pointer; }
+      button:hover { background: rgba(255,143,177,.16); }
+      .grid { display:grid; grid-template-columns: 1fr; gap: 14px; }
+      @media (min-width: 900px){ .grid{ grid-template-columns: 1fr 1fr; } }
+      .card { border:1px solid rgba(255,255,255,.12); border-radius: 14px; background: rgba(255,255,255,.06); padding: 12px; }
+      .img { width: 100%; height: auto; display:block; border-radius: 14px; background:#000; }
+      .meta { opacity:.85; font-size: 13px; line-height:1.35; margin-top: 8px; }
+      code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    </style>
+    <script>
+      window.__INVITACION_DEBUG__ = true;
+    </script>
+    <script src="./script.js" defer></script>
+    <script src="./ticket-test.js" defer></script>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>Test boleto PNG (canvas)</h1>
+      <div class="row">
+        <button id="genBtn" type="button">Generar casos</button>
+      </div>
+      <div class="grid" id="grid"></div>
+      <p class="meta">
+        Si aquí se ve bien (sin texto fuera del recuadro), entonces la exportación está correcta.
+        Usa <code>Ctrl+F5</code> si ves resultados viejos.
+      </p>
+    </div>
+  </body>
+</html>
+

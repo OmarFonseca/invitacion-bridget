@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tests — Invitación Bridget</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        background: #0b1b22;
+        color: #eaf7ff;
+      }
+      .wrap {
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 20px 14px 40px;
+      }
+      h1 {
+        margin: 0 0 8px;
+        font-size: 22px;
+      }
+      .hint {
+        opacity: 0.85;
+        line-height: 1.4;
+        margin: 0 0 16px;
+      }
+      .panel {
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 14px;
+        padding: 14px;
+        background: rgba(255, 255, 255, 0.06);
+      }
+      .row {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        align-items: center;
+        margin-top: 12px;
+      }
+      button {
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 12px;
+        padding: 10px 12px;
+        background: rgba(125, 227, 246, 0.18);
+        color: #eaf7ff;
+        cursor: pointer;
+        font-weight: 700;
+      }
+      button:hover {
+        background: rgba(255, 143, 177, 0.16);
+      }
+      .kpi {
+        display: inline-flex;
+        gap: 10px;
+        align-items: center;
+        padding: 8px 10px;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.04);
+      }
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #ffd36b;
+      }
+      .dot.ok {
+        background: #7affb0;
+      }
+      .dot.bad {
+        background: #ff6b86;
+      }
+      ul {
+        margin: 12px 0 0;
+        padding-left: 18px;
+        line-height: 1.45;
+      }
+      code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+        font-size: 0.95em;
+      }
+    </style>
+
+    <script>
+      // Activa exports internos para probar sin frameworks
+      window.__INVITACION_DEBUG__ = true;
+    </script>
+    <script src="./script.js" defer></script>
+    <script src="./tests.js" defer></script>
+  </head>
+
+  <body>
+    <div class="wrap">
+      <h1>Tests — Invitación Bridget</h1>
+      <p class="hint">
+        Esto corre pruebas rápidas de validación y almacenamiento <code>localStorage</code> sin instalar nada.
+        No modifica tu <code>index.html</code>, pero sí puede escribir/borrar el storage de pruebas.
+      </p>
+
+      <div class="panel">
+        <div class="row">
+          <button id="runBtn" type="button">Correr tests</button>
+          <button id="clearBtn" type="button">Limpiar storage</button>
+          <span class="kpi"><span class="dot" id="statusDot"></span> <span id="statusText">Listo</span></span>
+        </div>
+        <ul id="results"></ul>
+      </div>
+    </div>
+  </body>
+</html>
+

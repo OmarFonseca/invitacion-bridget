@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Invitación interactiva: Fiesta de 3 años (temática marina) + RSVP sin backend." />
+    <title>🐠 Fiesta de 3 años — Bridget Macarena</title>
+
+    <!-- Tipografías: solo Google Fonts (opcional). Si prefieres 100% offline, elimina este link. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700&family=Nunito:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+
+  <body>
+    <!-- Fondo decorativo: gradiente, burbujas y peces suaves -->
+    <div class="ocean" aria-hidden="true">
+      <canvas class="ocean__canvas" id="oceanCanvas" aria-hidden="true"></canvas>
+      <div class="ocean__bubbles" id="bgBubbles"></div>
+      <div class="ocean__fish" id="bgFish"></div>
+    </div>
+
+    <!-- Pez que “sigue” el cursor (desktop). En móvil se mantiene discreto. -->
+    <div class="cursor-fish" id="cursorFish" aria-hidden="true"></div>
+
+    <!-- Botón flotante (forma de pez) para abrir/cerrar RSVP -->
+    <button class="fab-fish" id="fabRsvp" type="button" aria-label="Abrir confirmación de asistencia">
+      <span class="fab-fish__icon" aria-hidden="true"></span>
+      <span class="fab-fish__text">RSVP</span>
+    </button>
+
+    <main class="app" id="app">
+      <header class="hero" id="top">
+        <div class="hero__card">
+          <p class="badge">🎉 Invitación</p>
+          <h1 class="title">Fiesta de 3 años</h1>
+          <p class="subtitle">
+            <span class="subtitle__name">Bridget Macarena Gómez Dávila</span>
+          </p>
+
+          <div class="hero__meta">
+            <div class="meta">
+              <p class="meta__label">Papás</p>
+              <p class="meta__value">Diana Dávila Reyes<br />Diego Oziel Gómez Luna</p>
+            </div>
+            <div class="meta">
+              <p class="meta__label">Padrinos</p>
+              <p class="meta__value">Paola Elizabeth Gonzalez Luna<br />Mixtli Omar Fonseca Vega</p>
+            </div>
+          </div>
+
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#rsvp" id="ctaRsvp">Confirmar asistencia</a>
+            <a class="btn btn--ghost" href="#info">Ver detalles</a>
+          </div>
+        </div>
+
+        <!-- Pez decorativo del hero (SVG inline para evitar dependencias) -->
+        <div class="hero__fish" aria-hidden="true">
+          <svg viewBox="0 0 240 140" class="fish-hero" role="img" aria-label="">
+            <defs>
+              <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#8fe7ff" />
+                <stop offset="1" stop-color="#ff9fb2" />
+              </linearGradient>
+            </defs>
+            <path
+              d="M160 70c0 28-28 50-70 50S20 98 20 70 48 20 90 20s70 22 70 50Z"
+              fill="url(#g1)"
+              opacity="0.95"
+            />
+            <path d="M160 70c25-20 45-25 60-25-10 15-10 35 0 50-15 0-35-5-60-25Z" fill="#7ad7f0" />
+            <circle cx="70" cy="60" r="8" fill="#1d2b34" />
+            <circle cx="68" cy="58" r="3" fill="#fff" opacity="0.8" />
+            <path d="M95 85c18 8 40 8 58 0" stroke="#1d2b34" stroke-width="6" stroke-linecap="round" opacity="0.25" />
+            <path d="M105 40c5-12 14-18 28-18 10 0 18 3 24 9" stroke="#ffffff" stroke-width="6" stroke-linecap="round" opacity="0.35" />
+          </svg>
+        </div>
+      </header>
+
+      <section class="section" id="info" aria-label="Detalles del evento">
+        <div class="section__inner">
+          <h2 class="section__title">Detalles del evento</h2>
+
+          <div class="cards">
+            <article class="card">
+              <h3 class="card__title">⛪ Recepción de misa</h3>
+              <p class="card__big">11:50 am</p>
+              <p class="card__text">
+                Inmaculada Concepción<br />
+                Benito Juárez Barrón<br />
+                Nicolás Romero
+              </p>
+              <a
+                class="card__link"
+                href="https://www.google.com/maps/search/?api=1&query=Inmaculada%20Concepci%C3%B3n%20Benito%20Ju%C3%A1rez%20Barr%C3%B3n%20Nicol%C3%A1s%20Romero"
+                target="_blank"
+                rel="noreferrer"
+                >Abrir mapa</a
+              >
+            </article>
+
+            <article class="card card--accent">
+              <h3 class="card__title">🎈 Recepción en salón</h3>
+              <p class="card__big">1:00 pm a 1:30 pm</p>
+              <p class="card__text">
+                Salón de banquetes Arana<br />
+                Calle Ignacio Zaragoza No. 23<br />
+                Col. Benito Juárez Barrón
+              </p>
+              <a
+                class="card__link"
+                href="https://www.google.com/maps/search/?api=1&query=Sal%C3%B3n%20de%20banquetes%20Arana%20Calle%20Ignacio%20Zaragoza%2023%20Benito%20Ju%C3%A1rez%20Barr%C3%B3n"
+                target="_blank"
+                rel="noreferrer"
+                >Abrir mapa</a
+              >
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--rsvp" id="rsvp" aria-label="Confirmación de asistencia">
+        <div class="section__inner">
+          <div class="rsvp-header">
+            <h2 class="section__title">Confirmación de asistencia</h2>
+            <p class="section__subtitle">Confirma tu asistencia y cuántos lugares reservamos para ti.</p>
+          </div>
+
+          <div class="grid">
+            <form class="form" id="rsvpForm" novalidate>
+              <label class="field">
+                <span class="field__label">Nombre del invitado / familia</span>
+                <input
+                  class="field__input"
+                  id="guestName"
+                  name="guestName"
+                  type="text"
+                  placeholder="Ej: Familia Pérez"
+                  autocomplete="name"
+                  required
+                  maxlength="80"
+                />
+                <span class="field__hint">Escribe como quieres que aparezca en tu boleto.</span>
+              </label>
+
+              <div class="row">
+                <label class="field">
+                  <span class="field__label">Adultos</span>
+                  <input class="field__input" id="adults" name="adults" type="number" inputmode="numeric" min="0" step="1" value="1" required />
+                </label>
+                <label class="field">
+                  <span class="field__label">Niños</span>
+                  <input class="field__input" id="kids" name="kids" type="number" inputmode="numeric" min="0" step="1" value="0" required />
+                </label>
+              </div>
+
+              <div class="form__actions">
+                <button class="btn btn--primary" id="confirmBtn" type="submit">Confirmar asistencia</button>
+                <button class="btn btn--ghost" id="clearLocalBtn" type="button" title="Borra confirmaciones guardadas en este dispositivo">
+                  Limpiar este dispositivo
+                </button>
+              </div>
+
+              <p class="form__note">
+                Confirma tu asistencia y descarga tu boleto digital.
+              </p>
+
+              <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+            </form>
+
+            <aside class="panel">
+              <div class="panel__box">
+                <h3 class="panel__title">Totales en este dispositivo</h3>
+                <div class="stats">
+                  <div class="stat">
+                    <p class="stat__num" id="totalAdults">0</p>
+                    <p class="stat__label">Adultos</p>
+                  </div>
+                  <div class="stat">
+                    <p class="stat__num" id="totalKids">0</p>
+                    <p class="stat__label">Niños</p>
+                  </div>
+                  <div class="stat stat--wide">
+                    <p class="stat__num" id="totalGuests">0</p>
+                    <p class="stat__label">Invitados (adultos + niños)</p>
+                  </div>
+                </div>
+
+                <details class="panel__details">
+                  <summary>Ver registros guardados</summary>
+                  <ul class="list" id="recordsList"></ul>
+                </details>
+
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--ticket" id="ticket" aria-label="Boleto digital" hidden>
+        <div class="section__inner">
+          <div class="ticket-header">
+            <h2 class="section__title">Tu boleto digital</h2>
+            <p class="section__subtitle">Guárdalo en tu celular. ¡Te esperamos!</p>
+          </div>
+
+          <div class="ticket-wrap">
+            <div class="ticket" id="ticketCard" role="group" aria-label="Boleto digital">
+              <div class="ticket__top">
+                <p class="ticket__badge">🐠 Fiesta de 3 años</p>
+                <p class="ticket__name" id="ticketName">—</p>
+              </div>
+              <div class="ticket__mid">
+                <div class="ticket__count">
+                  <p class="ticket__countNum" id="ticketAdults">0</p>
+                  <p class="ticket__countLabel">Adultos</p>
+                </div>
+                <div class="ticket__count">
+                  <p class="ticket__countNum" id="ticketKids">0</p>
+                  <p class="ticket__countLabel">Niños</p>
+                </div>
+                <div class="ticket__message" id="ticketMessage">Hemos reservado 0 lugares para ti.</div>
+              </div>
+              <div class="ticket__bottom">
+                <p class="ticket__line"><strong>Misa:</strong> 11:50 am · Inmaculada Concepción</p>
+                <p class="ticket__line"><strong>Salón:</strong> 1:00–1:30 pm · Salón Arana</p>
+              </div>
+            </div>
+
+            <div class="ticket-actions">
+              <button class="btn btn--primary" id="downloadTicketPngBtn" type="button">Descargar boleto (PNG)</button>
+            </div>
+          </div>
+
+          <!-- Canvas oculto para exportar PNG (se genera al momento) -->
+          <canvas id="ticketCanvas" class="sr-only" width="1200" height="700" aria-hidden="true"></canvas>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <p class="footer__text">
+          Hecho con cariño para Bridget. <a href="#top">Volver arriba</a>
+        </p>
+        <p class="footer__tiny">
+          Nota: si abres esta invitación en otro dispositivo/navegador, los totales guardados no se comparten (no hay backend).
+        </p>
+      </footer>
+    </main>
+
+    <!-- Contenedor para animaciones “on click” -->
+    <div class="fx-layer" id="fxLayer" aria-hidden="true"></div>
+
+    <script src="./script.js" defer></script>
+  </body>
+</html>
