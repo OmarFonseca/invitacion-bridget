@@ -1269,6 +1269,13 @@
     const records = addRecord(record);
     lastConfirmedRecord = record;
 
+    // Enviar al backend (Cloudflare D1) - "Fire and forget" para no bloquear UI
+    fetch("/api/rsvp", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(record),
+    }).catch((err) => console.error("Error al guardar en backend:", err));
+
     // UI
     refreshSidebar();
     setTicketUI(record);

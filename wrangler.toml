@@ -1,0 +1,7 @@
+name = "invitacion-bridget"
+compatibility_date = "2026-02-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "invitacion_bridget"
+database_id = "f6f04a71-5203-4a11-9ade-8f4e8767b67d"
