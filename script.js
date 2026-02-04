@@ -646,7 +646,7 @@
       }
     };
     if (audioCtx.state === "suspended") {
-      audioCtx.resume().then(run).catch(() => {});
+      audioCtx.resume().then(run).catch(() => { });
     } else {
       run();
     }
@@ -1326,16 +1326,37 @@
   }
 
   // =========================
+  // Música de fondo (Macarena)
+  // =========================
+  function playBackgroundMusic() {
+    const audio = new Audio("./music/Macarena.mp3");
+    audio.currentTime = 2; // Inicia en el segundo 2
+    audio.loop = true;
+    audio.volume = 0.4; // Volumen moderado
+
+    const attemptPlay = () => {
+      audio.play().catch(() => {
+        // Si falla (bloqueo de autoplay), esperamos a la primera interacción
+        document.addEventListener("click", () => audio.play(), { once: true });
+        document.addEventListener("touchstart", () => audio.play(), { once: true });
+      });
+    };
+
+    attemptPlay();
+  }
+
+  // =========================
   // Init
   // =========================
   function init() {
+    playBackgroundMusic();
     refreshSidebar();
 
     // Desbloqueo temprano de audio (primer toque/clic) para iOS/Android.
     window.addEventListener(
       "pointerdown",
       () => {
-        withAudioReady(() => {});
+        withAudioReady(() => { });
       },
       { once: true, passive: true }
     );
